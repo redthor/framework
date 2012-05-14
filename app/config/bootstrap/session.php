@@ -41,11 +41,9 @@ Session::config(array(
 use lithium\security\Auth;
 
 Auth::config(array(
-	'default' => array(
-		'adapter' => 'Form',
-		'model' => 'Users',
-		'fields' => array('username', 'password')
-	)
+    'default' => array(
+        'adapter' => 'OpenId'
+    )
 ));
 
 ?>
