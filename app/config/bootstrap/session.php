@@ -37,7 +37,6 @@ Session::config(array(
  * @see lithium\security\auth\adapter\Form
  * @see lithium\action\Request::$data
  * @see lithium\security\Auth
- */
 use lithium\security\Auth;
 
 Auth::config(array(
@@ -45,5 +44,6 @@ Auth::config(array(
         'adapter' => 'OpenId'
     )
 ));
+ */
 
 ?>

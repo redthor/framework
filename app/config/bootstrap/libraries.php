@@ -122,6 +122,7 @@ Libraries::add('app', array('default' => true));
  */
 // Libraries::add('li3_docs');
 Libraries::add('li3_qa');
-Libraries::add('lightopenid');
+Libraries::add('li3_openid_auth');
+//Libraries::add('lightopenid');
 
 ?>
