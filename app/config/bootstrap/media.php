@@ -34,26 +34,30 @@ Collection::formats('lithium\net\http\Media');
  * plugin's `webroot` directory into your main application's `webroot` directory, or adding routing
  * rules in your web server's configuration.
  */
-// use lithium\action\Dispatcher;
-// use lithium\action\Response;
-// use lithium\net\http\Media;
+use lithium\action\Dispatcher;
+use lithium\action\Response;
+use lithium\net\http\Media;
 //
-// Dispatcher::applyFilter('_callable', function($self, $params, $chain) {
-// 	list($library, $asset) = explode('/', $params['request']->url, 2) + array("", "");
-//
-// 	if ($asset && ($path = Media::webroot($library)) && file_exists($file = "{$path}/{$asset}")) {
-// 		return function() use ($file) {
-// 			$info = pathinfo($file);
-// 			$media = Media::type($info['extension']);
-// 			$content = (array) $media['content'];
-//
-// 			return new Response(array(
-// 				'headers' => array('Content-type' => reset($content)),
-// 				'body' => file_get_contents($file)
-// 			));
-// 		};
-// 	}
-// 	return $chain->next($self, $params, $chain);
-// });
+Dispatcher::applyFilter('_callable', function($self, $params, $chain) {
+    list($junk, $library, $asset) = 
+    array_merge(
+        explode('/', $params['request']->url, 3),
+        array("", "")
+    );
+
+    if ($asset && ($path = Media::webroot($library)) && file_exists($file = "{$path}/{$asset}")) {
+            return function() use ($file) {
+                    $info = pathinfo($file);
+                    $media = Media::type($info['extension']);
+                    $content = (array) $media['content'];
+
+                    return new Response(array(
+                            'headers' => array('Content-type' => reset($content)),
+                            'body' => file_get_contents($file)
+                    ));
+            };
+    }
+    return $chain->next($self, $params, $chain);
+});
 
 ?>

@@ -29,6 +29,7 @@
  * instructions include library names, paths to files, and any applicable class-loading rules. This
  * file also statically loads common classes to improve bootstrap performance.
  */
+require __DIR__ . '/bootstrap/cake_debug.php';
 require __DIR__ . '/bootstrap/libraries.php';
 
 /**
@@ -75,7 +76,7 @@ require __DIR__ . '/bootstrap/session.php';
  * This file contains configurations for handling different content types within the framework,
  * including converting data to and from different formats, and handling static media assets.
  */
-// require __DIR__ . '/bootstrap/media.php';
+require __DIR__ . '/bootstrap/media.php';
 
 /**
  * This file configures console filters and settings, specifically output behavior and coloring.
